@@ -294,3 +294,252 @@
   </footer>
 </body>
 </html>
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixlona AI Chatbot</title>
+    <style>
+        /* Global Styles */
+        body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        }
+
+        /* Chatbot container */
+        #chatbot-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 300px;
+        height: 400px;
+        background-color: #f8f9fa;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: none; /* Initially hidden */
+        flex-direction: column;
+        border-radius: 10px;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        }
+
+        /* Chatbot Header */
+        #chatbot-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background-color: #007bff;
+        color: white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        }
+
+        #chatbot-header span {
+        font-size: 24px;
+        cursor: pointer;
+        }
+
+        /* Chatbot Title */
+        #chatbot-title {
+        font-size: 18px;
+        font-weight: bold;
+        flex-grow: 1;
+        text-align: center;
+        }
+
+        /* Messages Section */
+        #chatbot-messages {
+        flex-grow: 1;
+        padding: 10px;
+        overflow-y: auto;
+        max-height: 250px;
+        border-bottom: 1px solid #ddd;
+        background-color: #ffffff;
+        }
+
+        .message {
+        margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 8px;
+        max-width: 80%;
+        }
+
+        .user-message {
+        background-color: #007bff;
+        color: white;
+        text-align: right;
+        margin-left: auto;
+        }
+
+        .bot-message {
+        background-color: #e9ecef;
+        color: #333;
+        text-align: left;
+        }
+
+        /* Input Section */
+        #chatbot-input-container {
+        display: flex;
+        padding: 10px;
+        background-color: #f1f1f1;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        }
+
+        #chatbot-input {
+        width: 75%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        outline: none;
+        }
+
+        #chatbot-send {
+        width: 20%;
+        margin-left: 10px;
+        background-color: #28a745;
+        border: none;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        }
+
+        #chatbot-send:hover {
+        background-color: #218838;
+        }
+
+        /* Chat Toggle Icon */
+        #chatbot-toggle {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        font-size: 30px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        border-radius: 50%;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1001;
+        }
+
+    </style>
+    </head>
+    <body>
+
+    <!-- Chatbot Toggle -->
+    <div id="chatbot-toggle">💬</div>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container">
+        <div id="chatbot-header">
+        <div id="chatbot-title">Pixlona AI Assistant</div>
+        <span id="chatbot-toggle-close">✖️</span>
+        </div>
+        <div id="chatbot-messages"></div>
+        <div id="chatbot-input-container">
+        <input id="chatbot-input" type="text" placeholder="Type your message...">
+        <button id="chatbot-send">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Elements
+        const chatbotContainer = document.getElementById('chatbot-container');
+        const chatbotToggle = document.getElementById('chatbot-toggle');
+        const chatbotClose = document.getElementById('chatbot-toggle-close');
+        const chatbotMessages = document.getElementById('chatbot-messages');
+        const chatbotInput = document.getElementById('chatbot-input');
+        const chatbotSend = document.getElementById('chatbot-send');
+
+        // Predefined responses
+        const responses = {
+        'hi': 'Hello! Welcome to Pixlona AI. How can I assist you today?',
+        'hello': 'Hi there! What can I help you with?',
+        'services': 'We offer AI-generated images and custom chatbot development. Would you like more details?',
+        'pricing': 'Our pricing is tailored to your needs. Please schedule a consultation to discuss further.',
+        'image generation': 'Our AI can generate high-quality images in seconds. Want to learn more?',
+        'contact': 'You can contact us via email at pixlonaphotography@gmail.com.',
+        'default': 'I\'m your Pixlona AI assistant. I can help you with our services, image generation, and more.'
+        };
+
+        // Toggle chatbot visibility
+        chatbotToggle.addEventListener('click', () => {
+        chatbotContainer.style.display = 'flex';
+        setTimeout(() => chatbotContainer.style.opacity = 1, 10);
+        chatbotToggle.style.display = 'none';
+        });
+
+        // Close chatbot
+        chatbotClose.addEventListener('click', () => {
+        chatbotContainer.style.opacity = 0;
+        setTimeout(() => {
+            chatbotContainer.style.display = 'none';
+            chatbotToggle.style.display = 'block';
+        }, 300);
+        });
+
+        // Add message to chat
+        function addMessage(message, type) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', type);
+        messageElement.textContent = message;
+        chatbotMessages.appendChild(messageElement);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        // Get bot response
+        function getBotResponse(userMessage) {
+        const lowerMessage = userMessage.toLowerCase();
+
+        for (let key in responses) {
+            if (lowerMessage.includes(key)) {
+            return responses[key];
+            }
+        }
+
+        return responses['default'];
+        }
+
+        // Send message
+        function sendMessage() {
+        const userMessage = chatbotInput.value.trim();
+
+        // Check if message is empty or too short
+        if (!userMessage || userMessage.length < 1) {
+            addMessage('Please enter a longer message.', 'bot-message');
+            return;
+        }
+
+        // Display user message
+        addMessage(userMessage, 'user-message');
+
+        // Display bot response after a delay
+        setTimeout(() => {
+            const botResponse = getBotResponse(userMessage);
+            addMessage(botResponse, 'bot-message');
+        }, 800);
+
+        // Clear input field
+        chatbotInput.value = '';
+        }
+
+        // Event listeners for sending messages
+        chatbotSend.addEventListener('click', sendMessage);
+        chatbotInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+        });
+
+    </script>
+
+    </body>
+    </html>
+
