@@ -4,382 +4,188 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pixlona AI - AI Solutions</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 <style>
-    /* General Styles */
     body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to bottom, #f9f9f9, #ffffff);
-    color: #333;
-    line-height: 1.6;
-    }
-
-    header {
-    background: linear-gradient(135deg, #673AB7, #512DA8);
-    color: white;
-    padding: 2rem 1rem;
-    text-align: center;
-    }
-
-    nav {
-    display: flex;
-    justify-content: center;
-    background: #333;
-    padding: 0.5rem;
-    }
-
-    nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 1rem;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-    color: #673AB7;
-    }
-
-    .hero {
-    text-align: center;
-    padding: 2rem 1rem;
-    background: linear-gradient(135deg, #FF9800, #FFC107);
-    color: white;
-    }
-
-    .hero h1 {
-    font-size: 2.8rem;
-    }
-
-    .hero p {
-    font-size: 1.2rem;
-    margin: 1rem 0;
-    }
-
-    section {
-    margin: 2rem auto;
-    padding: 1rem;
-    max-width: 900px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    section h2 {
-    text-align: center;
-    color: #673AB7;
-    margin-bottom: 1rem;
-    }
-
-    /* Features Section */
-    .features {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    }
-
-    .feature {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1rem;
-    background: linear-gradient(135deg, #FF7043, #FFAB91);
-    border-radius: 8px;
-    color: white;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .feature img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    }
-
-    .feature:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .feature:nth-child(even) {
-    flex-direction: row-reverse;
-    }
-
-    /* Services Section */
-    .services {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    }
-
-    .service {
-    padding: 1rem;
-    background: linear-gradient(135deg, #43A047, #A5D6A7);
-    border-radius: 8px;
-    color: white;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .service:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Image Section */
-    .image-section {
-    text-align: center;
-    margin: 2rem 0;
-    }
-
-    .image-section h2 {
-    color: #512DA8;
-    margin-bottom: 1rem;
-    }
-
-    .image-gallery {
-    display: flex;
-    flex-direction: column;  /* Align images vertically */
-    align-items: center;
-    gap: 1rem;
-    }
-
-    .image-gallery img {
-    width: 90%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .image-gallery img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Form Section */
-    .form-section {
-    text-align: center; /* Center the entire form */
-    margin-top: 2rem;
-    padding: 2rem;
-    background: linear-gradient(135deg, #673AB7, #512DA8);
-    border-radius: 8px;
-    color: white;
-    }
-
-    .form-section form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    align-items: center;
-    }
-
-    .form-section input,
-    .form-section textarea {
-    width: 80%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-    margin: 0.5rem 0;
-    }
-
-    .form-section button {
-    padding: 0.8rem;
-    background: #FF9800;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background 0.3s ease;
-    }
-
-    .form-section button:hover {
-    background: #512DA8;
-    }
-
-    /* Footer Section */
-    footer {
-    text-align: center;
-    padding: 1rem;
-    background: #333;
-    color: white;
-    }
-
-    footer a {
-    color: white;
-    text-decoration: none;
-    margin: 0 0.5rem;
-    }
-
-    footer a:hover {
-    color: #FF9800;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-    .feature, .service {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .feature img {
-        width: 100px;
-        height: 100px;
-    }
-
-    nav a {
-        margin: 0 0.5rem;
-        font-size: 0.9rem;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
-    }
-
-    .image-gallery img {
-        width: 90%;
-        height: auto;
-    }
-
-    .form-section input,
-    .form-section textarea {
-        width: 90%;
-    }
+        font-family: 'Arial', sans-serif;
     }
 </style>
 </head>
-<body>
-<header>
-    <h1>Pixlona AI Solutions</h1>
-    <p>Your AI Partner for Creativity and Productivity</p>
-</header>
-<nav>
-    <a href="#features">Features</a>
-    <a href="#images">Examples</a>
-    <a href="#contact">Contact Us</a>
-</nav>
-<div class="hero">
-    <h1>Empowering You with AI</h1>
-    <p>AI-driven solutions tailored for content creators, businesses, and influencers.</p>
-</div>
-<section id="features">
-    <h2>Features</h2>
-    <div class="features">
-    <div class="feature">
-        <img src="https://via.placeholder.com/120" alt="Feature Icon">
-        <div>
-        <h3>Image Generation</h3>
-        <p>Create high-quality images for personal and commercial use in seconds.</p>
+<body class="bg-gray-50 text-gray-900 font-sans">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-purple-700 text-white shadow-lg">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="text-2xl font-bold">Pixlona AI Solutions</h1>
+            </div>
+            <ul class="flex space-x-6">
+                <li><a href="#features" class="hover:text-blue-200 transition">Features</a></li>
+                <li><a href="#services" class="hover:text-blue-200 transition">Services</a></li>
+                <li><a href="#images" class="hover:text-blue-200 transition">Examples</a></li>
+                <li><a href="#contact" class="hover:text-blue-200 transition">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section (previously added) -->
+    <main>
+        <section class="relative bg-cover bg-center h-[600px] flex items-center" 
+                 style="background: linear-gradient(135deg, #54bcdb, #f07373);">
+            <div class="container mx-auto px-4 text-center text-white">
+                <h2 class="text-5xl font-bold mb-6">Empowering You with AI</h2>
+                <p class="text-xl max-w-2xl mx-auto mb-8">
+                    AI-driven solutions tailored for content creators, businesses, and influencers.
+                </p>
+                <a href="#contact" 
+                   class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-full text-lg transition">
+                    Get Started
+                </a>
+            </div>
+        </section>
+
+        <!-- Features Section (previously added) -->
+        <section id="features" class="container mx-auto px-4 py-16">
+            <h2 class="text-3xl font-bold text-center mb-12">Our Features</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition">
+                    <i class="fas fa-image text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">Image Generation</h3>
+                    <p>Create high-quality images for personal and commercial use in seconds.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition">
+                    <i class="fas fa-robot text-4xl text-purple-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">AI Chatbots</h3>
+                    <p>Engage your audience with intelligent, responsive chatbots.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition">
+                    <i class="fas fa-chart-line text-4xl text-green-600 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">Latest AI Trends</h3>
+                    <p>Stay updated with cutting-edge AI technologies and innovations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="container mx-auto px-4 py-16 bg-gray-100">
+            <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition group">
+                    <div class="text-center">
+                        <i class="fas fa-paint-brush text-4xl text-blue-600 mb-4 group-hover:text-blue-700 transition"></i>
+                        <h3 class="text-xl font-bold mb-4">AI Image Creation</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>• High-resolution image generation</li>
+                        <li>• Custom style transfer</li>
+                        <li>• Commercial use licensing</li>
+                        <li>• Bulk image creation</li>
+                    </ul>
+                    <div class="mt-6 text-center">
+                        <a href="#contact" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-full transition">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition group">
+                    <div class="text-center">
+                        <i class="fas fa-comment-dots text-4xl text-purple-600 mb-4 group-hover:text-purple-700 transition"></i>
+                        <h3 class="text-xl font-bold mb-4">AI Chatbot Development</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>• Custom chatbot design</li>
+                        <li>• Natural language processing</li>
+                        <li>• Integration support</li>
+                        <li>• Continuous learning models</li>
+                    </ul>
+                    <div class="mt-6 text-center">
+                        <a href="#contact" class="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-full transition">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition group">
+                    <div class="text-center">
+                        <i class="fas fa-microchip text-4xl text-green-600 mb-4 group-hover:text-green-700 transition"></i>
+                        <h3 class="text-xl font-bold mb-4">AI Consulting</h3>
+                    </div>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>• AI strategy development</li>
+                        <li>• Technology assessment</li>
+                        <li>• Implementation guidance</li>
+                        <li>• Custom AI solution design</li>
+                    </ul>
+                    <div class="mt-6 text-center">
+                        <a href="#contact" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full transition">
+                            Consult Experts
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Section (previously added) -->
+        <section id="images" class="container mx-auto px-4 py-16">
+            <h2 class="text-3xl font-bold text-center mb-12">Example Layouts</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition">
+                    <img src="https://via.placeholder.com/300x200.png?text=AI+Generated+Image+1" 
+                         alt="Example 1" 
+                         class="w-full rounded-lg mb-4">
+                    <h3 class="text-xl font-bold">AI-Generated Images</h3>
+                    <p>See the power of our image generation technology.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition">
+                    <img src="https://via.placeholder.com/300x200.png?text=AI+Generated+Image+2" 
+                         alt="Example 2" 
+                         class="w-full rounded-lg mb-4">
+                    <h3 class="text-xl font-bold">Adaptive AI Solutions</h3>
+                    <p>Customize AI tools to fit your unique needs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section (previously added) -->
+        <section id="contact" class="container mx-auto px-4 py-16 bg-gradient-to-r from-blue-600 to-purple-700 text-white">
+            <div class="max-w-lg mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-12">Contact Us</h2>
+                <form class="space-y-6">
+                    <input type="text" placeholder="Your Name" 
+                           class="w-full p-3 rounded-lg bg-white/20 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white">
+                    <input type="email" placeholder="Your Email" 
+                           class="w-full p-3 rounded-lg bg-white/20 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white">
+                    <textarea placeholder="Your Message" rows="4" 
+                              class="w-full p-3 rounded-lg bg-white/20 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white"></textarea>
+                    <button type="submit" 
+                            class="w-full bg-green-500 hover:bg-green-600 text-white p-3 rounded-lg transition">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (previously added) -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-8">
+                <p>&copy; 2024 Pixlona AI. All Rights Reserved.</p>
+                <div class="flex justify-center md:justify-end space-x-6">
+                    <a href="https://linkedin.com" target="_blank" class="hover:text-blue-300">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="hover:text-blue-300">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="https://github.com" target="_blank" class="hover:text-blue-300">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="feature">
-        <img src="https://via.placeholder.com/120" alt="Feature Icon">
-        <div>
-        <h3>AI Chatbots</h3>
-        <p>Engage your audience with intelligent, responsive chatbots for your website.</p>
-        </div>
-    </div>
-    </div>
-</section>
-<section id="services">
-    <h2>Our Services</h2>
-    <div class="services">
-    <div class="service">AI-Generated Images for Content Creators</div>
-    <div class="service">Custom AI Chatbot Development</div>
-    </div>
-</section>
-<section id="images" class="image-section">
-    <h2>Example Layouts</h2>
-    <p>See what our AI solutions can do for you!</p>
-    <div class="image-gallery">
-        <img src="https://via.placeholder.com/300x200.png?text=AI+Generated+Image+1" alt="Example 1">
-        <img src="https://via.placeholder.com/300x200.png?text=AI+Generated+Image+2" alt="Example 2">
-    </div>
-</section>
-
-<style>
-    /* Image Section */
-    .image-section {
-        text-align: center; /* Centers the text inside the section */
-        margin: 2rem auto;  /* Center the section itself */
-        max-width: 900px;    /* Max width of the section */
-        padding: 1rem;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
-    }
-    
-    .image-section h2 {
-        color: #512DA8;
-        margin-bottom: 1rem;
-    }
-    
-    .image-section p {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
-    }
-    
-    .image-gallery {
-        display: flex;
-        justify-content: center; /* Center the images horizontally */
-        gap: 1rem;
-        align-items: center;
-    }
-    
-    .image-gallery img {
-        width: 45%;  /* Adjusted to fit two images side by side */
-        height: auto;
-        object-fit: cover;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .image-gallery img:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    }
-    
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .image-gallery {
-        flex-direction: column;  /* Stack images vertically on smaller screens */
-        gap: 0.5rem;
-        }
-    
-        .image-gallery img {
-        width: 90%;  /* For smaller screens, make the images full-width */
-        }
-    }
-</style>
-
-
-
-<section id="contact" class="form-section">
-    <h2>Contact Us</h2>
-    <form action="mailto:sumityadav329@gmail.com" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
-    <button type="submit">Send Message</button>
-    </form>
-</section>
-<footer>
-    <p>&copy; 2024 Pixlona AI. All rights reserved.</p>
-    <p><a href="https://wa.me/your-number">LinkedIn</a> | <a href="https://twitter.com">Twitter</a></p>
-</footer>
+    </footer>
 </body>
 </html>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
