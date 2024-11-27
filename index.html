@@ -3,99 +3,294 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pixlona AI - Image Showcase</title>
+  <title>Pixlona AI - AI Solutions</title>
   <style>
+    /* General Styles */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f4f9;
+      background: linear-gradient(to bottom, #f9f9f9, #ffffff);
       color: #333;
+      line-height: 1.6;
     }
 
     header {
-      background-color: #6a0dad;
+      background: linear-gradient(135deg, #673AB7, #512DA8);
       color: white;
-      padding: 15px 20px;
+      padding: 2rem 1rem;
       text-align: center;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #333;
+      padding: 0.5rem;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 10px;
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-size: 1rem;
+      transition: color 0.3s ease;
     }
 
-    .intro {
+    nav a:hover {
+      color: #673AB7;
+    }
+
+    .hero {
       text-align: center;
-      margin-bottom: 30px;
+      padding: 2rem 1rem;
+      background: linear-gradient(135deg, #FF9800, #FFC107);
+      color: white;
     }
 
-    .intro h2 {
-      font-size: 2rem;
-      margin-bottom: 10px;
+    .hero h1 {
+      font-size: 2.8rem;
     }
 
-    .intro p {
+    .hero p {
       font-size: 1.2rem;
-      color: #555;
+      margin: 1rem 0;
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: auto;
+    section {
+      margin: 2rem auto;
+      padding: 1rem;
+      max-width: 900px;
+      background: white;
       border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    section h2 {
+      text-align: center;
+      color: #673AB7;
+      margin-bottom: 1rem;
+    }
+
+    /* Features Section */
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1rem;
+      background: linear-gradient(135deg, #FF7043, #FFAB91);
+      border-radius: 8px;
+      color: white;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .gallery img:hover {
+    .feature img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .feature:hover {
       transform: scale(1.05);
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 10px 20px;
-      margin-top: 20px;
+    .feature:nth-child(even) {
+      flex-direction: row-reverse;
     }
 
-    footer p {
-      margin: 0;
+    /* Services Section */
+    .services {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .service {
+      padding: 1rem;
+      background: linear-gradient(135deg, #43A047, #A5D6A7);
+      border-radius: 8px;
+      color: white;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Image Section */
+    .image-section {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .image-section h2 {
+      color: #512DA8;
+      margin-bottom: 1rem;
+    }
+
+    .image-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .image-gallery img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .image-gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Form Section */
+    .form-section form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-section input,
+    .form-section textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .form-section button {
+      padding: 0.7rem;
+      background: #673AB7;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .form-section button:hover {
+      background: #512DA8;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .feature, .service {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .feature img {
+        width: 100px;
+        height: 100px;
+      }
+
+      nav a {
+        margin: 0 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .image-gallery img {
+        width: 90%;
+        height: auto;
+      }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Pixlona AI</h1>
+    <p>Your AI Partner for Creativity and Productivity</p>
   </header>
-  <div class="container">
-    <section class="intro">
-      <h2>Welcome to Pixlona AI</h2>
-      <p>Discover stunning AI-generated images tailored to your needs.</p>
-    </section>
-    <section class="gallery">
-      <img src="https://drive.google.com/uc?id=1XiO2KG68G5XGBlDxjXv6nopgnuWtA-3H" alt="Image 1">
-      <img src="https://drive.google.com/uc?id=1Rpa12xJAcX6KWTy-n4ZkgX-UEBs4UNLX" alt="Image 2">
-      <img src="https://drive.google.com/uc?id=18IOC10sJyATXVZL2f1aIgBmVM6VOGpZs" alt="Image 3">
-      <img src="https://drive.google.com/uc?id=1580yk6Znme7X1-sTm6va_0k_2kFO606i" alt="Image 4">
-    </section>
+  <nav>
+    <a href="#features">Features</a>
+    <a href="#images">Examples</a>
+    <a href="#contact">Contact Us</a>
+  </nav>
+  <div class="hero">
+    <h1>Empowering You with AI</h1>
+    <p>AI-driven solutions tailored for content creators, businesses, and influencers.</p>
   </div>
-  <footer>
-    <p>&copy; 2024 Pixlona AI. Powered by AI, Designed for You.</p>
+  <section id="features">
+    <h2>Features</h2>
+    <div class="features">
+      <div class="feature">
+        <img src="https://via.placeholder.com/120" alt="Feature Icon">
+        <div>
+          <h3>Image Generation</h3>
+          <p>Create high-quality images for personal and commercial use in seconds.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <img src="https://via.placeholder.com/120" alt="Feature Icon">
+        <div>
+          <h3>AI Chatbots</h3>
+          <p>Engage your audience with intelligent, responsive chatbots for your website.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="service">AI-Generated Images for Content Creators</div>
+      <div class="service">Custom AI Chatbot Development</div>
+    </div>
+  </section>
+  <section id="images" class="image-section">
+    <h2>Example Layouts</h2>
+    <p>See what our AI solutions can do for you!</p>
+    <div class="image-gallery">
+      <img src="https://via.placeholder.com/300x200.png?text=AI+Generated+Image+1" alt="AI Image Example 1">
+      <img src="https://via.placeholder.com/300x200.png?text=AI+Generated+Image+2" alt="AI Image Example 2">
+      <img src="https://via.placeholder.com/300x200.png?text=AI+Chatbot+Demo" alt="AI Chatbot Demo">
+      <img src="https://via.placeholder.com/300x200.png?text=More+Examples+Coming+Soon" alt="More Examples">
+    </div>
+  </section>
+  <section id="form" class="form-section">
+    <h2>Get in Touch</h2>
+    <form action="#" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="text" name="whatsapp" placeholder="WhatsApp Number" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <textarea name="message" rows="4" placeholder="What are you looking for?" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+  <footer id="contact">
+    <p>Contact us: <a href="mailto:pixlonaphotography@gmail.com">pixlonaphotography@gmail.com</a></p>
+    <p>WhatsApp Business: <a href="https://wa.me/your-number" target="_blank">Chat Now</a></p>
+    <div>
+      Follow us: 
+      <a href="https://facebook.com" target="_blank">Facebook</a> |
+      <a href="https://twitter.com" target="_blank">Twitter</a> |
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+    </div>
   </footer>
 </body>
 </html>
